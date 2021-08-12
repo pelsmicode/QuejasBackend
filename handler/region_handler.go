@@ -9,13 +9,13 @@ import (
 )
 
 type RegionHandler struct {
-	s service.RegionService
+	S service.RegionService
 }
 
 func (h *RegionHandler) GetAllRegions(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	region, err := h.s.GetRegions()
+	region, err := h.S.GetRegions()
 	if err != nil {
 		log.Println("[Handler Error GetRegion]", err)
 		writeResponse(w, http.StatusBadRequest, err.Error())

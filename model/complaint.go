@@ -9,6 +9,6 @@ type Complaint struct {
 	Detail    string    `json:"detail"`
 	Petition  string    `json:"petition"`
 	CreatedAt time.Time `json:"created_at"`
-	Company   Company   `json:"company"`
+	Company   Comapny   `json:"company"`
 	Person    Person    `json:"person"`
 }

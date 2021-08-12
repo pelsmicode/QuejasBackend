@@ -11,17 +11,17 @@ type RegionService interface {
 }
 
 type DefaultRegionService struct {
-	r repository.RegionRepository
+	R repository.RegionRepository
 }
 
 func NewRegionService(r repository.RegionRepository) DefaultRegionService {
-	return DefaultRegionService{r: r}
+	return DefaultRegionService{R: r}
 }
 
-func (s *DefaultRegionService) GetRegions() ([]model.Region, error) {
-	return s.r.FindAll()
+func (s DefaultRegionService) GetRegions() ([]model.Region, error) {
+	return s.R.FindAll()
 }
 
-func (s *DefaultRegionService) GetRegionByID(id int) (model.Region, error) {
-	return s.r.FindByID(id)
+func (s DefaultRegionService) GetRegionByID(id int) (model.Region, error) {
+	return s.R.FindByID(id)
 }

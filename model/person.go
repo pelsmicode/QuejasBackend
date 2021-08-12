@@ -9,6 +9,6 @@ type Person struct {
 	Gender   string      `json:"gender"`
 	Email    string      `json:"email"`
 	Phone    string      `json:"phone"`
-	Towship  Towship     `json:"towship"`
+	Towship  Township    `json:"towship"`
 	Branch   DiacoBranch `json:"branch"`
 }
