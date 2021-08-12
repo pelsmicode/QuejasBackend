@@ -17,6 +17,7 @@ func Controllers() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/region", regionHandler.GetAllRegions).Methods("GET")
+	router.HandleFunc("/region/{id}", regionHandler.GetRegion).Methods("GET")
 
 	return router
 }

@@ -21,8 +21,7 @@ func (r *RegionRepository) FindAll() ([]model.Region, error) {
 	var regions []model.Region
 	err := r.client.Select(&regions, query)
 	if err != nil {
-		log.Println("[DB Region Error]", err)
-		log.Println("Fallo en el sistema", regions)
+		log.Println("RegionRepository\t [DB Region Error]", err)
 	}
 
 	return regions, nil
@@ -32,9 +31,9 @@ func (r *RegionRepository) FindByID(id int) (model.Region, error) {
 	query := `SELECT id,name FROM regions WHERE id=$1`
 
 	var region model.Region
-	err := r.client.Select(&region, query, id)
+	err := r.client.Get(&region, query, id)
 	if err != nil {
-		log.Println("[DB Region Error]", err)
+		log.Println("RegionRepository\t [DB Region Error]", err)
 	}
 
 	return region, nil
