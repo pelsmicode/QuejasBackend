@@ -9,8 +9,9 @@ import (
 )
 
 var (
-	client        = db.NewSqlClient()
-	regionHandler = handler.RegionHandler{S: service.NewRegionService(repository.NewRegionRepository(client.DB))}
+	client           = db.NewSqlClient()
+	regionHandler    = handler.RegionHandler{S: service.NewRegionService(repository.NewRegionRepository(client.DB))}
+	deparmentHandler = handler.DeparmentHandler{S: service.NewDeparmentService(repository.NewDepartmentRepository(client.DB))}
 )
 
 func Controllers() *mux.Router {
@@ -18,6 +19,8 @@ func Controllers() *mux.Router {
 
 	router.HandleFunc("/region", regionHandler.GetAllRegions).Methods("GET")
 	router.HandleFunc("/region/{id}", regionHandler.GetRegion).Methods("GET")
+	router.HandleFunc("/deparment", deparmentHandler.GetAllDepartments).Methods("GET")
+	router.HandleFunc("/deparment/{id:[0-9]+}", deparmentHandler.GetDeparment).Methods("GET")
 
 	return router
 }

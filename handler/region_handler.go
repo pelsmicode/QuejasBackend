@@ -20,7 +20,7 @@ func (h *RegionHandler) GetAllRegions(w http.ResponseWriter, r *http.Request) {
 
 	region, err := h.S.GetRegions()
 	if err != nil {
-		log.Println("[Handler Error GetRegion]", err)
+		log.Println("[Handler Error GetRegions]", err)
 		writeResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}

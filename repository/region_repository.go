@@ -22,6 +22,7 @@ func (r *RegionRepository) FindAll() ([]model.Region, error) {
 	err := r.client.Select(&regions, query)
 	if err != nil {
 		log.Println("RegionRepository\t [DB Region Error]", err)
+		return nil, err
 	}
 
 	return regions, nil
@@ -34,6 +35,7 @@ func (r *RegionRepository) FindByID(id int) (model.Region, error) {
 	err := r.client.Get(&region, query, id)
 	if err != nil {
 		log.Println("RegionRepository\t [DB Region Error]", err)
+		return region, nil
 	}
 
 	return region, nil
