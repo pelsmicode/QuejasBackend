@@ -20,7 +20,13 @@ Presenta los endponit
 /township/{id} (principalmente usado en pruebas)
 ```
 
-### ToDo
+### ToDo 
 
 - [x] Manejo de Joins
+- [ ] Creación de un endpoint para obtener el municipio usando ID
+- [ ] Post del ingreso de "Persona"
+- [ ] Post del ingreso de "Empresa"
+- [ ] Post del ingreso de "Queja"
+
+Nota: Los puntos de post pueden que ten tenga un subsecciones que hacer. Posteriormente se Agragaran Put y Get a lo que se a pertinente, esto resulta descartable a momento.
 
