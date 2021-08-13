@@ -29,7 +29,12 @@ func (r *DepartmentRepository) FindAll() ([]model.Department, error) {
 }
 
 func (r *DepartmentRepository) FindByID(id int) (model.Department, error) {
-	query := `SELECT id,name FROM departments WHERE id=$1`
+	query := `SELECT departments.id, departments.name,
+						regions.id "region.id", regions.name "region.name"
+						FROM departments 
+						INNER JOIN regions
+						on departments.region_id = regions.id
+						WHERE departments.id=$1`
 
 	var department model.Department
 	err := r.client.Get(&department, query, id)

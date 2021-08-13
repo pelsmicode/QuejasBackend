@@ -12,6 +12,7 @@ var (
 	client           = db.NewSqlClient()
 	regionHandler    = handler.RegionHandler{S: service.NewRegionService(repository.NewRegionRepository(client.DB))}
 	deparmentHandler = handler.DeparmentHandler{S: service.NewDeparmentService(repository.NewDepartmentRepository(client.DB))}
+	townshipHandler  = handler.TownshipHandler{S: service.NewTownshipService(repository.NewTownshipRepository(client.DB))}
 )
 
 func Controllers() *mux.Router {
@@ -21,6 +22,8 @@ func Controllers() *mux.Router {
 	router.HandleFunc("/region/{id}", regionHandler.GetRegion).Methods("GET")
 	router.HandleFunc("/deparment", deparmentHandler.GetAllDepartments).Methods("GET")
 	router.HandleFunc("/deparment/{id:[0-9]+}", deparmentHandler.GetDeparment).Methods("GET")
+	router.HandleFunc("/township", townshipHandler.GetAllTownships).Methods("GET")
+	router.HandleFunc("/township/{id:[0-9]+}", townshipHandler.GetTownshipByID).Methods("GET")
 
 	return router
 }
