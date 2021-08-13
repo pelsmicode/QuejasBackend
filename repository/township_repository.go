@@ -39,12 +39,33 @@ func (r *TownshipeRepository) FindByID(id int) (model.Township, error) {
 						on regions.id = departments.region_id
 						WHERE townships.id=$1`
 
-	var region model.Township
-	err := r.client.Get(&region, query, id)
+	var muni model.Township
+	err := r.client.Get(&muni, query, id)
 	if err != nil {
 		log.Println("TownshipeRepository\t [DB Township Error]", err)
-		return region, err
+		return muni, err
 	}
 
-	return region, nil
+	return muni, nil
+}
+
+func (r *TownshipeRepository) FindByDeparment(depId int) ([]model.Township, error) {
+	query := `SELECT townships.id, townships.name,
+						departments.id "department.id", departments.name "department.name",
+						regions.id "department.region.id", regions.name "department.region.name"
+						FROM townships
+						LEFT JOIN departments
+						ON townships.department_id = departments.id
+						INNER JOIN regions
+						ON regions.id = departments.region_id
+						WHERE departments.id=$1`
+
+	var townships []model.Township
+	err := r.client.Select(&townships, query, depId)
+	if err != nil {
+		log.Println("TownshipeRepository\t [DB Township Error]", err)
+		return nil, err
+	}
+
+	return townships, nil
 }

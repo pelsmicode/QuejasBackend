@@ -9,3 +9,6 @@ get_townships:
 
 get_township:
 	curl 127.0.0.1:8484/township/2 | jq
+
+get_township_dep:
+	curl 127.0.0.1:8484/township/deparment/11 | jq

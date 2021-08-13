@@ -24,6 +24,7 @@ func Controllers() *mux.Router {
 	router.HandleFunc("/deparment/{id:[0-9]+}", deparmentHandler.GetDeparment).Methods("GET")
 	router.HandleFunc("/township", townshipHandler.GetAllTownships).Methods("GET")
 	router.HandleFunc("/township/{id:[0-9]+}", townshipHandler.GetTownshipByID).Methods("GET")
+	router.HandleFunc("/township/deparment/{id:[0-9]+}", townshipHandler.GetTownshipsByDep).Methods("GET")
 
 	return router
 }

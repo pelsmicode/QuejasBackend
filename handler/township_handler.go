@@ -43,3 +43,22 @@ func (h *TownshipHandler) GetTownshipByID(w http.ResponseWriter, r *http.Request
 
 	writeResponse(w, http.StatusAccepted, township)
 }
+
+func (h *TownshipHandler) GetTownshipsByDep(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		log.Println("[Handler Error GetTownshipsByDep]", err)
+		writeResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	townships, err := h.S.GetTownshipsByDep(id)
+	if err != nil {
+		log.Println("[Handler Error GetTownshipByID]", err)
+		writeResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	writeResponse(w, http.StatusOK, townships)
+}

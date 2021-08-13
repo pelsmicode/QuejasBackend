@@ -8,6 +8,7 @@ import (
 type TownshipService interface {
 	GetTownships() ([]model.Township, error)
 	GetTownshipByID(id int) (model.Township, error)
+	GetTownshipsByDep(depId int) ([]model.Township, error)
 }
 
 type DefaultTownshipServcie struct {
@@ -24,4 +25,8 @@ func (s DefaultTownshipServcie) GetTownships() ([]model.Township, error) {
 
 func (s DefaultTownshipServcie) GetTownshipByID(id int) (model.Township, error) {
 	return s.R.FindByID(id)
+}
+
+func (s DefaultTownshipServcie) GetTownshipsByDep(depId int) ([]model.Township, error) {
+	return s.R.FindByDeparment(depId)
 }
