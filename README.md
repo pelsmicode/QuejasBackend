@@ -23,7 +23,7 @@ Presenta los endponit
 ### ToDo 
 
 - [x] Manejo de Joins
-- [ ] Creación de un endpoint para obtener el municipio usando ID
+- [ ] Creación de un endpoint para obtener el municipio usando Id de deparmento
 - [ ] Post del ingreso de "Persona"
 - [ ] Post del ingreso de "Empresa"
 - [ ] Post del ingreso de "Queja"
