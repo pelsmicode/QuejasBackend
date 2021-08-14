@@ -12,3 +12,7 @@ get_township:
 
 get_township_dep:
 	curl 127.0.0.1:8484/township/deparment/11 | jq
+
+get_branches:
+	curl 127.0.0.1:8484/diaco | jq
+	
