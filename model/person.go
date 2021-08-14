@@ -9,6 +9,42 @@ type Person struct {
 	Gender   string      `json:"gender"`
 	Email    string      `json:"email"`
 	Phone    string      `json:"phone"`
-	Towship  Township    `json:"towship"`
+	Township Township    `json:"township"`
 	Branch   DiacoBranch `json:"branch"`
+}
+
+type PersonResponse struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Lastname string `json:"lastname"`
+	DPI      string `json:"dpi"`
+	NIT      string `json:"nit"`
+	Gender   string `json:"gender"`
+	Email    string `json:"email"`
+	Phone    string `json:"phone"`
+}
+
+type PersonRequest struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Lastname string `json:"lastname"`
+	DPI      string `json:"dpi"`
+	NIT      string `json:"nit"`
+	Gender   string `json:"gender"`
+	Email    string `json:"email"`
+	Phone    string `json:"phone"`
+	Township int    `json:"township"`
+	Branch   int    `json:"branch"`
+}
+
+func ToPresonResponse(p PersonRequest) PersonResponse {
+	return PersonResponse{
+		Name:     p.Name,
+		Lastname: p.Lastname,
+		DPI:      p.DPI,
+		NIT:      p.NIT,
+		Gender:   p.Gender,
+		Email:    p.Email,
+		Phone:    p.Phone,
+	}
 }

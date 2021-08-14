@@ -25,7 +25,8 @@ Presenta los endponit
 
 - [x] Manejo de Joins
 - [x] Creación de un endpoint para obtener el municipio usando Id de deparmento
-- [ ] Post del ingreso de "Persona"
+- [x] Post del ingreso de "Persona"
+  - [ ] Mejorar manejos
 - [ ] Post del ingreso de "Empresa"
 - [ ] Post del ingreso de "Queja"
 
