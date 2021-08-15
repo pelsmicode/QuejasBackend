@@ -15,6 +15,7 @@ var (
 	townshipHandler  = handler.TownshipHandler{S: service.NewTownshipService(repository.NewTownshipRepository(client.DB))}
 	branchHandler    = handler.BranchHandler{S: service.NewBranchService(repository.NewBranchRepository(client.DB))}
 	personHandler    = handler.PersonHandler{S: service.NewPersonService(repository.NewPersonRepository(client.DB))}
+	companyHandler   = handler.CompanyHandler{S: service.NewCompanyService(repository.NewCompanyRepository(client.DB))}
 )
 
 func Controllers() *mux.Router {
@@ -30,6 +31,7 @@ func Controllers() *mux.Router {
 	router.HandleFunc("/diaco", branchHandler.GetDiacoBranches).Methods("GET")
 
 	router.HandleFunc("/person", personHandler.SavePerson).Methods("POST")
+	router.HandleFunc("/company", companyHandler.SaveCompany).Methods("POST")
 
 	return router
 }
