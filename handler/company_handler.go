@@ -44,3 +44,29 @@ func (h *CompanyHandler) SaveCompany(w http.ResponseWriter, r *http.Request) {
 
 	writeResponse(w, http.StatusCreated, model.ToCompanyReponse(c))
 }
+
+func (h *CompanyHandler) UpdateCompany(w http.ResponseWriter, r *http.Request) {
+	var c model.CompanyRequest
+
+	err := json.NewDecoder(r.Body).Decode(&c)
+	if err != nil {
+		log.Println("[Handler Error UpdateCompany]", err)
+		writeResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if c.ID == 0 {
+		log.Println("[Handler Error UpdateCompany]", "Deep water")
+		writeResponse(w, http.StatusInternalServerError, "Information processing error")
+		return
+	}
+
+	response, err := h.S.UpdateCompany(c)
+	if err != nil {
+		log.Println("[Handler Error UpdateCompany]", err)
+		writeResponse(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	writeResponse(w, http.StatusOK, response)
+}

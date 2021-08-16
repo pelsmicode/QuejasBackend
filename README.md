@@ -33,6 +33,7 @@ Presenta los endponit
   - [ ] Mejorar manejos 
 - [x] Post del ingreso de "Empresa"
   - [ ] Mejorar manejos
+  - [ ] ~~Pulir el Update~~
 - [x] Post del ingreso de "Queja"
   - [ ] Mejorar manejos
 

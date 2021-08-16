@@ -36,3 +36,24 @@ WHERE township_id=$3 and nit=$2 and address=$4 and name=$1`, company.Name, compa
 
 	return c.ID, nil
 }
+
+func (r *CompanyRepository) Update(company model.CompanyRequest) (model.ComapnyResponse, error) {
+	query := `UPDATE companies
+	SET name=$1,
+	township_id=$2,
+	nit=$3,
+	address=$4,
+	phone=$5,
+	email=$6
+	WHERE id=$7`
+
+	tx := r.client.MustBegin()
+	tx.MustExec(query, company.Name, company.Township, company.NIT, company.Addres, company.Phone, company.Email, company.ID)
+	if err := tx.Commit(); err != nil {
+		log.Println("CompanyRepository\t [DB Companies Error]", err)
+		tx.Rollback()
+		return model.ComapnyResponse{}, err
+	}
+
+	return model.ToCompanyReponse(company), nil
+}

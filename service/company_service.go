@@ -7,6 +7,7 @@ import (
 
 type CompanyService interface {
 	SaveCompany(model.CompanyRequest) (int, error)
+	UpdateCompany(model.CompanyRequest) (model.ComapnyResponse, error)
 }
 
 type DefaultCompanyService struct {
@@ -19,4 +20,8 @@ func NewCompanyService(r repository.CompanyRepository) DefaultCompanyService {
 
 func (s DefaultCompanyService) SaveCompany(c model.CompanyRequest) (int, error) {
 	return s.R.Save(c)
+}
+
+func (s DefaultCompanyService) UpdateCompany(c model.CompanyRequest) (model.ComapnyResponse, error) {
+	return s.R.Update(c)
 }

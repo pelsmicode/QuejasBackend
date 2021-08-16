@@ -35,5 +35,7 @@ func Controllers() *mux.Router {
 	router.HandleFunc("/company", companyHandler.SaveCompany).Methods("POST")
 	router.HandleFunc("/complaint", complaintHandler.SaveComplaint).Methods("POST")
 
+	router.HandleFunc("/company", companyHandler.UpdateCompany).Methods("PUT")
+
 	return router
 }
