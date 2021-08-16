@@ -22,6 +22,7 @@ Presenta los endponit
 /diaco 
 /person
 /company
+/complaint
 ```
 
 ### ToDo 
@@ -32,7 +33,8 @@ Presenta los endponit
   - [ ] Mejorar manejos 
 - [x] Post del ingreso de "Empresa"
   - [ ] Mejorar manejos
-- [ ] Post del ingreso de "Queja"
+- [x] Post del ingreso de "Queja"
+  - [ ] Mejorar manejos
 
 Nota: Los puntos de post pueden que ten tenga un subsecciones que hacer. Posteriormente se Agragaran Put y Get a lo que se a pertinente, esto resulta descartable a momento.
 
