@@ -4,11 +4,11 @@ import "time"
 
 type Complaint struct {
 	ID        int       `json:"id"`
-	NoDoc     string    `json:"nodoc"`
-	DateDoc   string    `json:"datedoc"`
+	NoDoc     string    `json:"nodoc" db:"no_doc"`
+	DateDoc   string    `json:"datedoc" db:"date_doc"`
 	Detail    string    `json:"detail"`
 	Petition  string    `json:"petition"`
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `json:"created_at" db:"created_at"`
 	Company   Comapny   `json:"company" db:"company"`
 	Person    Person    `json:"person" db:"person"`
 }

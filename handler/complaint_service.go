@@ -32,3 +32,14 @@ func (h *ComplaintHandler) SaveComplaint(w http.ResponseWriter, r *http.Request)
 
 	writeResponse(w, http.StatusCreated, c)
 }
+
+func (h *ComplaintHandler) GetMainComplaints(w http.ResponseWriter, r *http.Request) {
+	c, err := h.S.GetMainComplaints()
+	if err != nil {
+		log.Println("[Handler Error GetMainComplaints]", err)
+		writeResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	writeResponse(w, http.StatusOK, c)
+}

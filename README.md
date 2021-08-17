@@ -23,6 +23,7 @@ Presenta los endponit
 /person
 /company
 /complaint
+/complaint/main
 ```
 
 ### ToDo 
@@ -36,6 +37,7 @@ Presenta los endponit
   - [ ] ~~Pulir el Update~~
 - [x] Post del ingreso de "Queja"
   - [ ] Mejorar manejos
+  - [ ] Funcionalidades de filtro
 
 Nota: Los puntos de post pueden que ten tenga un subsecciones que hacer. Posteriormente se Agragaran Put y Get a lo que se a pertinente, esto resulta descartable a momento.
 

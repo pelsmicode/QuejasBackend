@@ -7,6 +7,7 @@ import (
 
 type ComplaintService interface {
 	SaveComplaint(model.ComplaintRequest) error
+	GetMainComplaints() ([]model.Complaint, error)
 }
 
 type DefaultComplaintService struct {
@@ -19,4 +20,8 @@ func NewComplaintService(r repository.ComplaintRepository) DefaultComplaintServi
 
 func (s DefaultComplaintService) SaveComplaint(c model.ComplaintRequest) error {
 	return s.R.Save(c)
+}
+
+func (s DefaultComplaintService) GetMainComplaints() ([]model.Complaint, error) {
+	return s.R.GetMainComplaints()
 }

@@ -16,3 +16,5 @@ get_township_dep:
 get_branches:
 	curl 127.0.0.1:8484/diaco | jq
 	
+get_main_complaint:
+	curl 127.0.0.1:8484/complaint/main | jq
