@@ -6,7 +6,7 @@ import (
 )
 
 type ComplaintService interface {
-	SaveComplaint(model.ComplaintRequest) (int, error)
+	SaveComplaint(model.ComplaintRequest) error
 	GetMainComplaints() ([]model.Complaint, error)
 }
 
@@ -18,7 +18,7 @@ func NewComplaintService(r repository.ComplaintRepository) DefaultComplaintServi
 	return DefaultComplaintService{R: r}
 }
 
-func (s DefaultComplaintService) SaveComplaint(c model.ComplaintRequest) (int, error) {
+func (s DefaultComplaintService) SaveComplaint(c model.ComplaintRequest) error {
 	return s.R.Save(c)
 }
 

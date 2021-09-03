@@ -6,7 +6,8 @@ import (
 )
 
 type PersonService interface {
-	SavePerson(model.PersonRequest) (int, error)
+	SavePerson(model.PersonRequest) error
+	GetLastPersonID() int
 }
 
 type DefaultPersonService struct {
@@ -17,6 +18,10 @@ func NewPersonService(r repository.PersonRepository) DefaultPersonService {
 	return DefaultPersonService{R: r}
 }
 
-func (s DefaultPersonService) SavePerson(p model.PersonRequest) (int, error) {
+func (s DefaultPersonService) SavePerson(p model.PersonRequest) error {
 	return s.R.Save(p)
+}
+
+func (s DefaultPersonService) GetLastPersonID() int {
+	return s.R.LastId()
 }

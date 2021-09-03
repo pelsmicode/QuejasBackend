@@ -28,8 +28,8 @@ func (r *CompanyRepository) Save(company model.CompanyRequest) (int, error) {
 	}
 
 	var c model.CompanyRequest
-	err := r.client.Get(&c, `SELECT * from companies 
-WHERE township_id=$3 and nit=$2 and address=$4 and name=$1`, company.Name, company.NIT, company.Township, company.Addres)
+	err := r.client.Get(&c, `SELECT max(id), name, township_id, address, nit, phone, email from companies 
+WHERE township_id=$3 and nit=$2 and address=$4 and name=$1 group by id`, company.Name, company.NIT, company.Township, company.Addres)
 	if err != nil {
 		log.Println("CompanyRepository\t [Db Companies Error]", err)
 	}
@@ -56,4 +56,15 @@ func (r *CompanyRepository) Update(company model.CompanyRequest) (model.ComapnyR
 	}
 
 	return model.ToCompanyReponse(company), nil
+}
+
+func (r *CompanyRepository) GetLastID() int {
+	var id int
+	err := r.client.Get(&id, "select max(id) from companies")
+	if err != nil {
+		log.Println("CompanyRepository\t [DB Companies Error]", err)
+		return 0
+	}
+
+	return id
 }

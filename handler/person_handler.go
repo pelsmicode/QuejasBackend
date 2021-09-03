@@ -35,7 +35,7 @@ func (h *PersonHandler) SavePerson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	p.ID, err = h.S.SavePerson(p)
+	err = h.S.SavePerson(p)
 	if err != nil {
 		log.Println("[Handler Error SavePerson]", err)
 		writeResponse(w, http.StatusInternalServerError, err.Error())
@@ -43,4 +43,17 @@ func (h *PersonHandler) SavePerson(w http.ResponseWriter, r *http.Request) {
 	}
 
 	writeResponse(w, http.StatusCreated, model.ToPresonResponse(p))
+}
+
+func (h *PersonHandler) GetLastPerson(w http.ResponseWriter, r *http.Request) {
+	var p model.PersonRequest
+	id := h.S.GetLastPersonID()
+	if id == 0 {
+		log.Println("[Handler Error GetLastPerson]")
+		writeResponse(w, http.StatusInternalServerError, "Internal Error")
+		return
+	}
+
+	p.ID = id
+	writeResponse(w, http.StatusOK, model.ToPresonResponse(p))
 }

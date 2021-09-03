@@ -8,6 +8,7 @@ import (
 type CompanyService interface {
 	SaveCompany(model.CompanyRequest) (int, error)
 	UpdateCompany(model.CompanyRequest) (model.ComapnyResponse, error)
+	GetLastCompanyID() int
 }
 
 type DefaultCompanyService struct {
@@ -24,4 +25,8 @@ func (s DefaultCompanyService) SaveCompany(c model.CompanyRequest) (int, error) 
 
 func (s DefaultCompanyService) UpdateCompany(c model.CompanyRequest) (model.ComapnyResponse, error) {
 	return s.R.Update(c)
+}
+
+func (s DefaultCompanyService) GetLastCompanyID() int {
+	return s.R.GetLastID()
 }

@@ -70,3 +70,16 @@ func (h *CompanyHandler) UpdateCompany(w http.ResponseWriter, r *http.Request) {
 
 	writeResponse(w, http.StatusOK, response)
 }
+
+func (h *CompanyHandler) GetLastCompany(w http.ResponseWriter, r *http.Request) {
+	var c model.CompanyRequest
+	id := h.S.GetLastCompanyID()
+	if id == 0 {
+		log.Println("[Handler Error GetLastCompany]")
+		writeResponse(w, http.StatusInternalServerError, "Internal Error")
+		return
+	}
+
+	c.ID = id
+	writeResponse(w, http.StatusOK, model.ToCompanyReponse(c))
+}

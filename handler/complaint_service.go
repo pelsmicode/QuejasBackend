@@ -23,7 +23,7 @@ func (h *ComplaintHandler) SaveComplaint(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	c.ID, err = h.S.SaveComplaint(c)
+	err = h.S.SaveComplaint(c)
 	if err != nil {
 		log.Println("[Handler Error SaveComplaint]", err)
 		writeResponse(w, http.StatusInternalServerError, err.Error())
