@@ -15,7 +15,7 @@ func NewComplaintRepository(db *sqlx.DB) ComplaintRepository {
 	return ComplaintRepository{db}
 }
 
-func (r *ComplaintRepository) Save(complaint model.ComplaintRequest) error {
+func (r *ComplaintRepository) Save(complaint model.ComplaintRequest) (int, error) {
 	query := `INSERT INTO complaints 
 (no_doc, date_doc, detail, petition, company_id, complaints.person_id)
 VALUES ($1,$2,$3,$4,$5,$6)`
@@ -25,10 +25,17 @@ VALUES ($1,$2,$3,$4,$5,$6)`
 	if err := tx.Commit(); err != nil {
 		log.Println("ComplaintRepository\t [DB Complaint Error]", err)
 		tx.Rollback()
-		return err
+		return 0, err
 	}
 
-	return nil
+	var id int
+	err := r.client.Get(&id, "select max(id) from complaints")
+	if err != nil {
+		log.Println("PersonRepository\t [DB Persons Error]", err)
+		return 0, err
+	}
+
+	return id, nil
 }
 
 func (r *ComplaintRepository) GetMainComplaints() ([]model.Complaint, error) {
