@@ -35,7 +35,7 @@ func (h *PersonHandler) SavePerson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.S.SavePerson(p)
+	p.ID, err = h.S.SavePerson(p)
 	if err != nil {
 		log.Println("[Handler Error SavePerson]", err)
 		writeResponse(w, http.StatusInternalServerError, err.Error())

@@ -39,6 +39,7 @@ type PersonRequest struct {
 
 func ToPresonResponse(p PersonRequest) PersonResponse {
 	return PersonResponse{
+		ID:       p.ID,
 		Name:     p.Name,
 		Lastname: p.Lastname,
 		DPI:      p.DPI,
