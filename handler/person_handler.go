@@ -23,13 +23,13 @@ func (h *PersonHandler) SavePerson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if p.Township == 0 {
+	if p.Township == "" {
 		log.Println("[Handler] Error SavePerson", "No Twonship ID")
 		writeResponse(w, http.StatusBadRequest, p.Township)
 		return
 	}
 
-	if p.Branch == 0 {
+	if p.Branch == "" {
 		log.Println("[Handler] Error SavePerson", "No Branch ID")
 		writeResponse(w, http.StatusBadRequest, p.Branch)
 		return

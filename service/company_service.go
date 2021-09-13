@@ -6,7 +6,7 @@ import (
 )
 
 type CompanyService interface {
-	SaveCompany(model.CompanyRequest) (int, error)
+	SaveCompany(model.CompanyRequest) error
 	UpdateCompany(model.CompanyRequest) (model.ComapnyResponse, error)
 	GetLastCompanyID() int
 }
@@ -19,7 +19,7 @@ func NewCompanyService(r repository.CompanyRepository) DefaultCompanyService {
 	return DefaultCompanyService{R: r}
 }
 
-func (s DefaultCompanyService) SaveCompany(c model.CompanyRequest) (int, error) {
+func (s DefaultCompanyService) SaveCompany(c model.CompanyRequest) error {
 	return s.R.Save(c)
 }
 

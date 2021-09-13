@@ -17,7 +17,7 @@ func NewComplaintRepository(db *sqlx.DB) ComplaintRepository {
 
 func (r *ComplaintRepository) Save(complaint model.ComplaintRequest) error {
 	query := `INSERT INTO complaints 
-(no_doc, date_doc, detail, petition, company_id, complaints.person_id)
+(no_doc, date_doc, detail, petition, company_id, person_id)
 VALUES ($1,$2,$3,$4,$5,$6)`
 
 	tx := r.client.MustBegin()

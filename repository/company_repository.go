@@ -15,7 +15,7 @@ func NewCompanyRepository(db *sqlx.DB) CompanyRepository {
 	return CompanyRepository{db}
 }
 
-func (r *CompanyRepository) Save(company model.CompanyRequest) (int, error) {
+func (r *CompanyRepository) Save(company model.CompanyRequest) error {
 	query := `INSERT INTO companies (name, township_id, nit, address, phone, email)
 	VALUES ($1, $2, $3, $4, $5, $6)`
 
@@ -24,17 +24,10 @@ func (r *CompanyRepository) Save(company model.CompanyRequest) (int, error) {
 	if err := tx.Commit(); err != nil {
 		log.Println("CompanyRepository\t [DB Companies Error]", err)
 		tx.Rollback()
-		return 0, err
+		return err
 	}
 
-	var c model.CompanyRequest
-	err := r.client.Get(&c, `SELECT max(id), name, township_id, address, nit, phone, email from companies 
-WHERE township_id=$3 and nit=$2 and address=$4 and name=$1 group by id`, company.Name, company.NIT, company.Township, company.Addres)
-	if err != nil {
-		log.Println("CompanyRepository\t [Db Companies Error]", err)
-	}
-
-	return c.ID, nil
+	return nil
 }
 
 func (r *CompanyRepository) Update(company model.CompanyRequest) (model.ComapnyResponse, error) {

@@ -33,8 +33,8 @@ type PersonRequest struct {
 	Gender   string `json:"gender"`
 	Email    string `json:"email"`
 	Phone    string `json:"phone"`
-	Township int    `json:"township"`
-	Branch   int    `json:"branch"`
+	Township string `json:"township"`
+	Branch   string `json:"branch"`
 }
 
 func ToPresonResponse(p PersonRequest) PersonResponse {

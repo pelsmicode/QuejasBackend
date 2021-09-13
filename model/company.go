@@ -17,16 +17,17 @@ type CompanyRequest struct {
 	Phone    string `json:"phone"`
 	Email    string `json:"email"`
 	Addres   string `json:"address" db:"address"`
-	Township int    `json:"township" db:"township_id"`
+	Township string `json:"township" db:"township_id"`
 }
 
 type ComapnyResponse struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	NIT    string `json:"nit"`
-	Phone  string `json:"phone"`
-	Email  string `json:"email"`
-	Addres string `json:"address"`
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	NIT      string `json:"nit"`
+	Phone    string `json:"phone"`
+	Email    string `json:"email"`
+	Addres   string `json:"address"`
+	Township int    `json:"township" db:"township_id"`
 }
 
 func ToCompanyReponse(c CompanyRequest) ComapnyResponse {

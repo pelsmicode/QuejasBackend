@@ -23,22 +23,16 @@ func (h *CompanyHandler) SaveCompany(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if c.Township == 0 {
+	if c.Township == "" {
 		log.Println("[Handler] Error SaveCompany", "No Township ID")
 		writeResponse(w, http.StatusBadRequest, c.Township)
 		return
 	}
 
-	c.ID, err = h.S.SaveCompany(c)
+	err = h.S.SaveCompany(c)
 	if err != nil {
 		log.Println("[Handler Error SaveCompany]", err)
 		writeResponse(w, http.StatusInternalServerError, err.Error())
-		return
-	}
-
-	if c.ID == 0 {
-		log.Println("[Handler Error SaveCompany]", "Deep water")
-		writeResponse(w, http.StatusInternalServerError, "Information processing error")
 		return
 	}
 
