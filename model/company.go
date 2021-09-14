@@ -6,7 +6,7 @@ type Comapny struct {
 	NIT      string   `json:"nit"`
 	Phone    string   `json:"phone"`
 	Email    string   `json:"email"`
-	Addres   string   `json:"address"`
+	Addres   string   `json:"address" db:"address"`
 	Township Township `json:"township" db:"township"`
 }
 
