@@ -34,7 +34,7 @@ VALUES ($1,$2,$3,$4,$5,$6)`
 func (r *ComplaintRepository) GetMainComplaints() ([]model.Complaint, error) {
 	query := `select 
 	complaints.id, complaints.no_doc, complaints.date_doc, complaints.created_at, companies.id "company.id", companies.name "company.name",
-    companies.township_id "company.township.id", companies.name "company.name", companies.address "company.address", persons.id "person.id", persons.name "person.name", persons.lastname "person.lastname", diaco_branches.id "person.branch.id", 
+    companies.township_id "company.township.id", companies.name "company.name", companies.address "company.address", persons.id "person.id", persons.name "person.name", persons.lastname "person.lastname", diaco_branches.id "person.branch.id", persons.gender "person.gender", 
     diaco_branches.name "person.branch.name", townships.name "person.branch.township.name", diaco_branches.name "person.branch.township.department.name"
 from complaints
 inner join companies 
